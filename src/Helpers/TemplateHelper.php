@@ -17,7 +17,7 @@ class TemplateHelper
 
     public static function getVariableFromTemplate(string $content, string $beginBlock = '{', string $endBlock = '}'): array
     {
-        preg_match_all('/'.$beginBlock.'([a-z-_.]+)'.$endBlock.'/i', $content, $matches);
+        preg_match_all('/' . $beginBlock . '([a-z-_.]+)' . $endBlock . '/i', $content, $matches);
         return $matches[1];
     }
 

@@ -213,7 +213,7 @@ class StringHelper
      */
     public static function startsWith($string, $with, $caseSensitive = true)
     {
-        if ( ! $bytes = static::byteLength($with)) {
+        if (!$bytes = static::byteLength($with)) {
             return true;
         }
         if ($caseSensitive) {
@@ -235,7 +235,7 @@ class StringHelper
      */
     public static function endsWith($string, $with, $caseSensitive = true)
     {
-        if ( ! $bytes = static::byteLength($with)) {
+        if (!$bytes = static::byteLength($with)) {
             return true;
         }
         if ($caseSensitive) {
@@ -270,7 +270,7 @@ class StringHelper
         if ($trim !== false) {
             if ($trim === true) {
                 $trim = 'trim';
-            } elseif ( ! is_callable($trim)) {
+            } elseif (!is_callable($trim)) {
                 $trim = function ($v) use ($trim) {
                     return trim($v, $trim);
                 };
@@ -289,10 +289,10 @@ class StringHelper
 
     /**
      * Counts words in a string.
-     * @since 2.0.8
-     *
      * @param string $string
      * @return int
+     * @since 2.0.8
+     *
      */
     public static function countWords($string)
     {
@@ -308,7 +308,7 @@ class StringHelper
      */
     public static function normalizeNumber($value)
     {
-        $value = (string) $value;
+        $value = (string)$value;
 
         $localeInfo = localeconv();
         $decimalSeparator = isset($localeInfo['decimal_point']) ? $localeInfo['decimal_point'] : null;
@@ -361,7 +361,7 @@ class StringHelper
     {
         // . and , are the only decimal separators known in ICU data,
         // so its safe to call str_replace here
-        return str_replace(',', '.', (string) $number);
+        return str_replace(',', '.', (string)$number);
     }
 
     /**
@@ -396,13 +396,13 @@ class StringHelper
             '\-' => '-',
         ];
 
-        if (isset($options['escape']) && ! $options['escape']) {
+        if (isset($options['escape']) && !$options['escape']) {
             unset($replacements['\\\\\\\\']);
             unset($replacements['\\\\\\*']);
             unset($replacements['\\\\\\?']);
         }
 
-        if ( ! empty($options['filePath'])) {
+        if (!empty($options['filePath'])) {
             $replacements['\*'] = '[^/\\\\]*';
             $replacements['\?'] = '[^/\\\\]';
         }
@@ -410,7 +410,7 @@ class StringHelper
         $pattern = strtr(preg_quote($pattern, '#'), $replacements);
         $pattern = '#^' . $pattern . '$#us';
 
-        if (isset($options['caseSensitive']) && ! $options['caseSensitive']) {
+        if (isset($options['caseSensitive']) && !$options['caseSensitive']) {
             $pattern .= 'i';
         }
 
